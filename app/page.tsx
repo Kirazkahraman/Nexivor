@@ -1,164 +1,274 @@
 'use client';
 
 import Link from 'next/link';
-import { BarChart3, Shield, Users, Clock, AlertCircle, TrendingUp, LogOut, Menu } from 'lucide-react';
+import { Shield, Users, Zap, BarChart3, CheckCircle, ArrowRight, Lock, Eye, Smartphone } from 'lucide-react';
 import { useState } from 'react';
 
+const features = [
+  {
+    icon: Shield,
+    title: 'Gelişmiş Güvenlik',
+    description: 'AI destekli anomali tespiti ve gerçek zamanlı tehdit analizi ile korunan sistem.',
+  },
+  {
+    icon: Users,
+    title: 'Akıllı Personel Yönetimi',
+    description: 'Otomatik zaman takibi, izin planlaması ve iş akışı yönetimi.',
+  },
+  {
+    icon: Eye,
+    title: 'Yüz Tanıma Teknolojisi',
+    description: 'Hassas biometrik kimlik doğrulama ile erişim kontrolü.',
+  },
+  {
+    icon: BarChart3,
+    title: 'Gelişmiş Raporlama',
+    description: 'Detaylı analitik ve özelleştirilebilir dashboard raporları.',
+  },
+  {
+    icon: Zap,
+    title: 'Gerçek Zamanlı Monitorlama',
+    description: 'Canlı aktivite takibi ve anlık bildirimler.',
+  },
+  {
+    icon: Lock,
+    title: 'Veri Güvenliği',
+    description: 'Şifreli depolama ve enterprise-grade güvenlik protokolleri.',
+  },
+];
+
 const stats = [
-  { label: 'Aktif Personel', value: '156', change: '+12%', icon: Users, color: 'bg-blue-500/10 text-blue-400' },
-  { label: 'Güvenlik Olayı', value: '3', change: '-8%', icon: AlertCircle, color: 'bg-red-500/10 text-red-400' },
-  { label: 'Saat Ortalaması', value: '8.5h', change: '+2%', icon: Clock, color: 'bg-green-500/10 text-green-400' },
-  { label: 'Sistem Sağlığı', value: '99.8%', change: 'Stabil', icon: Shield, color: 'bg-purple-500/10 text-purple-400' },
+  { number: '1000+', label: 'Kurulu Kullanıcı' },
+  { number: '99.8%', label: 'Sistem Çalışma Zamanı' },
+  { number: '24/7', label: 'Destek' },
+  { number: '50ms', label: 'Ortalama Yanıt Süresi' },
 ];
 
-const recentActivity = [
-  { name: 'Ahmet Yılmaz', action: 'Giriş Yaptı', time: '09:45', status: 'success' },
-  { name: 'Fatih Kaya', action: 'Çıkış Yaptı', time: '18:30', status: 'info' },
-  { name: 'Selin Demir', action: 'Anomali Tespiti', time: '14:22', status: 'warning' },
-  { name: 'Mehmet Öz', action: 'Giriş Yaptı', time: '08:15', status: 'success' },
-  { name: 'Ayşe Şahin', action: 'İzin Başladı', time: '07:00', status: 'info' },
-];
-
-const menuItems = [
-  { label: 'Dashboard', icon: BarChart3, href: '/dashboard' },
-  { label: 'Personel', icon: Users, href: '/dashboard' },
-  { label: 'Güvenlik', icon: Shield, href: '/security' },
-  { label: 'Raporlar', icon: TrendingUp, href: '/dashboard' },
+const testimonials = [
+  {
+    name: 'Fatih Kahraman',
+    role: 'İnsan Kaynakları Müdürü',
+    company: 'TechCorp',
+    text: 'Veridora, personel yönetimini tamamen dönüştürdü. Zaman takibi otomatik oldu, raporlar saniyeler içinde hazırlanıyor.',
+  },
+  {
+    name: 'Ayşe Yılmaz',
+    role: 'Güvenlik Müdürü',
+    company: 'SecureBuilding Inc.',
+    text: 'AI destekli güvenlik sistemi bize işyerine gelen tehditler hakkında önceden uyarıyor. Harika!',
+  },
+  {
+    name: 'Mehmet Demir',
+    role: 'Operasyon Direktörü',
+    company: 'GlobalTech',
+    text: 'Uygulanması hızlı, kullanımı kolay ve sonuçları etkileyici. Harika bir yatırım.',
+  },
 ];
 
 export default function HomePage() {
-  const [sidebarOpen, setSidebarOpen] = useState(true);
+  const [email, setEmail] = useState('');
 
   return (
-    <div className="flex min-h-screen bg-slate-950 text-slate-100">
-      {/* Sidebar */}
-      <div className={`${sidebarOpen ? 'w-64' : 'w-20'} border-r border-slate-800 bg-slate-900/50 transition-all duration-300`}>
-        <div className="flex h-16 items-center justify-between border-b border-slate-800 px-4">
-          {sidebarOpen && (
-            <div className="flex items-center gap-2">
-              <div className="h-8 w-8 rounded-lg bg-gradient-to-br from-sky-400 to-sky-600"></div>
-              <span className="font-semibold">Veridora</span>
-            </div>
-          )}
-          <button onClick={() => setSidebarOpen(!sidebarOpen)} className="rounded-lg p-2 hover:bg-slate-800">
-            <Menu className="h-5 w-5" />
-          </button>
-        </div>
-        <nav className="space-y-2 p-4">
-          {menuItems.map((item) => {
-            const Icon = item.icon;
-            return (
-              <Link
-                key={item.label}
-                href={item.href}
-                className="flex items-center gap-3 rounded-lg px-4 py-3 transition hover:bg-slate-800"
-              >
-                <Icon className="h-5 w-5" />
-                {sidebarOpen && <span className="text-sm">{item.label}</span>}
-              </Link>
-            );
-          })}
-        </nav>
-      </div>
-
-      {/* Main Content */}
-      <div className="flex-1">
-        {/* Header */}
-        <header className="border-b border-slate-800 bg-slate-900/30">
-          <div className="flex items-center justify-between px-8 py-6">
-            <div>
-              <p className="text-xs uppercase tracking-widest text-sky-400">Ana Sayfa</p>
-              <h1 className="mt-1 text-3xl font-semibold">Kontrol Paneli</h1>
-            </div>
-            <div className="flex items-center gap-4">
-              <Link
-                href="/dashboard"
-                className="rounded-lg bg-sky-500 px-6 py-2 text-sm font-medium transition hover:bg-sky-400"
-              >
-                Dashboard'a Git
-              </Link>
-              <button className="rounded-lg p-2 hover:bg-slate-800">
-                <LogOut className="h-5 w-5" />
-              </button>
-            </div>
+    <div className="min-h-screen bg-gradient-to-b from-slate-950 via-slate-900 to-slate-950 text-slate-100">
+      {/* Navigation */}
+      <nav className="border-b border-slate-800/50 bg-slate-950/80 backdrop-blur">
+        <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4">
+          <div className="flex items-center gap-2">
+            <div className="h-8 w-8 rounded-lg bg-gradient-to-br from-sky-400 to-cyan-500"></div>
+            <span className="text-xl font-bold">Veridora</span>
           </div>
-        </header>
+          <div className="flex gap-4">
+            <Link
+              href="/login"
+              className="rounded-lg px-6 py-2 text-sm font-medium transition hover:bg-slate-800"
+            >
+              Giriş Yap
+            </Link>
+            <Link
+              href="/login"
+              className="rounded-lg bg-gradient-to-r from-sky-500 to-cyan-500 px-6 py-2 text-sm font-medium transition hover:shadow-lg hover:shadow-sky-500/50"
+            >
+              Başla
+            </Link>
+          </div>
+        </div>
+      </nav>
 
-        {/* Content */}
-        <main className="p-8">
-          {/* Stats Grid */}
-          <div className="mb-8 grid gap-6 md:grid-cols-2 lg:grid-cols-4">
-            {stats.map((stat) => {
-              const Icon = stat.icon;
+      {/* Hero Section */}
+      <section className="relative overflow-hidden px-6 py-32">
+        <div className="absolute inset-0 -z-10 overflow-hidden">
+          <div className="absolute -top-40 -right-40 h-80 w-80 rounded-full bg-sky-500/20 blur-3xl"></div>
+          <div className="absolute -bottom-40 -left-40 h-80 w-80 rounded-full bg-cyan-500/20 blur-3xl"></div>
+        </div>
+
+        <div className="mx-auto max-w-4xl text-center">
+          <div className="mb-6 inline-block rounded-full border border-sky-500/30 bg-sky-500/10 px-4 py-2 text-sm text-sky-300">
+            🚀 Akıllı Personel ve Güvenlik Yönetimi
+          </div>
+
+          <h1 className="mb-6 text-5xl font-bold tracking-tight md:text-6xl">
+            İşyerinizi <span className="bg-gradient-to-r from-sky-400 to-cyan-400 bg-clip-text text-transparent">Akıllı Hale Getirin</span>
+          </h1>
+
+          <p className="mb-8 text-xl text-slate-400">
+            AI destekli yüz tanıma, gerçek zamanlı güvenlik izleme ve otomatik personel yönetimi ile modern ofis çağına hoş geldiniz.
+          </p>
+
+          <div className="flex flex-col gap-4 sm:flex-row sm:justify-center">
+            <Link
+              href="/login"
+              className="flex items-center justify-center gap-2 rounded-lg bg-gradient-to-r from-sky-500 to-cyan-500 px-8 py-3 font-medium transition hover:shadow-lg hover:shadow-sky-500/50"
+            >
+              Ücretsiz Deneyin <ArrowRight className="h-5 w-5" />
+            </Link>
+            <Link
+              href="/login"
+              className="rounded-lg border border-slate-700 px-8 py-3 font-medium transition hover:bg-slate-800/50"
+            >
+              Demo İste
+            </Link>
+          </div>
+
+          {/* Stats */}
+          <div className="mt-16 grid gap-8 md:grid-cols-4">
+            {stats.map((stat, i) => (
+              <div key={i} className="text-center">
+                <p className="text-3xl font-bold text-sky-400">{stat.number}</p>
+                <p className="mt-1 text-sm text-slate-400">{stat.label}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Features Grid */}
+      <section className="px-6 py-24">
+        <div className="mx-auto max-w-7xl">
+          <div className="mb-16 text-center">
+            <h2 className="mb-4 text-4xl font-bold">Güçlü Özellikler</h2>
+            <p className="text-lg text-slate-400">Veridora'nın sunduğu tüm araçlar</p>
+          </div>
+
+          <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+            {features.map((feature, i) => {
+              const Icon = feature.icon;
               return (
-                <div key={stat.label} className="rounded-2xl border border-slate-800 bg-slate-900/50 p-6">
-                  <div className="flex items-center justify-between">
-                    <div>
-                      <p className="text-sm text-slate-400">{stat.label}</p>
-                      <p className="mt-2 text-3xl font-semibold">{stat.value}</p>
-                      <p className="mt-1 text-xs text-slate-500">{stat.change}</p>
-                    </div>
-                    <div className={`rounded-lg p-3 ${stat.color}`}>
-                      <Icon className="h-6 w-6" />
-                    </div>
+                <div
+                  key={i}
+                  className="rounded-2xl border border-slate-800/50 bg-slate-900/30 p-8 transition hover:border-sky-500/50 hover:bg-slate-900/50 hover:shadow-lg hover:shadow-sky-500/10"
+                >
+                  <div className="mb-4 inline-block rounded-lg bg-sky-500/10 p-3">
+                    <Icon className="h-6 w-6 text-sky-400" />
                   </div>
+                  <h3 className="mb-2 text-xl font-semibold">{feature.title}</h3>
+                  <p className="text-slate-400">{feature.description}</p>
                 </div>
               );
             })}
           </div>
+        </div>
+      </section>
 
-          {/* Charts and Activity */}
-          <div className="grid gap-6 lg:grid-cols-3">
-            {/* Chart Placeholder */}
-            <div className="rounded-2xl border border-slate-800 bg-slate-900/50 p-6 lg:col-span-2">
-              <h2 className="text-lg font-semibold">Haftalık Aktivite</h2>
-              <div className="mt-6 flex h-64 items-end justify-around gap-4 bg-gradient-to-b from-slate-800/20 to-transparent rounded-lg p-4">
-                {[65, 78, 92, 88, 75, 85, 95].map((height, i) => (
-                  <div key={i} className="flex flex-col items-center gap-2">
-                    <div
-                      className="w-8 rounded-t-lg bg-gradient-to-t from-sky-500 to-sky-400 transition hover:from-sky-400 hover:to-sky-300"
-                      style={{ height: `${height}%` }}
-                    ></div>
-                    <span className="text-xs text-slate-500">{'PAZTTÇP'[i]}</span>
-                  </div>
-                ))}
-              </div>
-            </div>
-
-            {/* Recent Activity */}
-            <div className="rounded-2xl border border-slate-800 bg-slate-900/50 p-6">
-              <h2 className="text-lg font-semibold">Son Aktiviteler</h2>
-              <div className="mt-4 space-y-4">
-                {recentActivity.map((activity, i) => (
-                  <div key={i} className="flex items-center justify-between border-b border-slate-800 pb-4 last:border-0">
-                    <div>
-                      <p className="text-sm font-medium">{activity.name}</p>
-                      <p className="text-xs text-slate-500">{activity.action}</p>
-                    </div>
-                    <div className="text-right">
-                      <p className="text-xs text-slate-400">{activity.time}</p>
-                      <div className={`mt-1 inline-block rounded-full px-2 py-1 text-xs ${
-                        activity.status === 'success' ? 'bg-green-500/20 text-green-400' :
-                        activity.status === 'warning' ? 'bg-yellow-500/20 text-yellow-400' :
-                        'bg-blue-500/20 text-blue-400'
-                      }`}>
-                        {activity.status}
-                      </div>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
+      {/* Testimonials */}
+      <section className="px-6 py-24">
+        <div className="mx-auto max-w-7xl">
+          <div className="mb-16 text-center">
+            <h2 className="mb-4 text-4xl font-bold">Müşterilerimiz Ne Diyor</h2>
+            <p className="text-lg text-slate-400">Veridora'yı kullanarak başarıya ulaşan işletmeler</p>
           </div>
 
-          {/* Info Banner */}
-          <div className="mt-8 rounded-2xl border border-sky-500/30 bg-sky-500/10 p-6">
-            <p className="text-sm text-sky-300">
-              <strong>Demo Modunda:</strong> Bu panel örnek verilerle çalışmaktadır. Gerçek verileri görmek için sisteme giriş yapın ve Dashboard panelini ziyaret edin.
+          <div className="grid gap-8 md:grid-cols-3">
+            {testimonials.map((testimonial, i) => (
+              <div
+                key={i}
+                className="rounded-2xl border border-slate-800/50 bg-slate-900/30 p-8"
+              >
+                <div className="mb-4 flex gap-1">
+                  {[...Array(5)].map((_, j) => (
+                    <span key={j} className="text-yellow-400">★</span>
+                  ))}
+                </div>
+                <p className="mb-6 text-slate-300">{testimonial.text}</p>
+                <div>
+                  <p className="font-semibold">{testimonial.name}</p>
+                  <p className="text-sm text-slate-400">{testimonial.role} @ {testimonial.company}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* CTA Section */}
+      <section className="px-6 py-24">
+        <div className="mx-auto max-w-4xl">
+          <div className="rounded-3xl border border-sky-500/30 bg-gradient-to-r from-sky-500/10 to-cyan-500/10 p-12 text-center">
+            <h2 className="mb-4 text-4xl font-bold">Hemen Başlayın</h2>
+            <p className="mb-8 text-lg text-slate-300">
+              İşyerinizi Veridora ile dönüştürün. 30 gün ücretsiz deneme.
             </p>
+
+            <div className="flex flex-col gap-4 sm:flex-row sm:justify-center">
+              <input
+                type="email"
+                placeholder="E-posta adresiniz..."
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                className="rounded-lg border border-slate-700 bg-slate-950 px-6 py-3 outline-none focus:border-sky-500"
+              />
+              <Link
+                href="/login"
+                className="rounded-lg bg-gradient-to-r from-sky-500 to-cyan-500 px-8 py-3 font-medium transition hover:shadow-lg hover:shadow-sky-500/50"
+              >
+                Deneyin
+              </Link>
+            </div>
           </div>
-        </main>
-      </div>
+        </div>
+      </section>
+
+      {/* Footer */}
+      <footer className="border-t border-slate-800/50 bg-slate-950 px-6 py-12">
+        <div className="mx-auto max-w-7xl">
+          <div className="grid gap-8 md:grid-cols-4">
+            <div>
+              <div className="flex items-center gap-2">
+                <div className="h-6 w-6 rounded-lg bg-gradient-to-br from-sky-400 to-cyan-500"></div>
+                <span className="font-bold">Veridora</span>
+              </div>
+              <p className="mt-2 text-sm text-slate-400">Akıllı personel ve güvenlik yönetimi platformu.</p>
+            </div>
+            <div>
+              <p className="font-semibold">Ürün</p>
+              <ul className="mt-2 space-y-2 text-sm text-slate-400">
+                <li><Link href="#" className="hover:text-sky-400">Özellikler</Link></li>
+                <li><Link href="#" className="hover:text-sky-400">Fiyatlandırma</Link></li>
+                <li><Link href="#" className="hover:text-sky-400">Güvenlik</Link></li>
+              </ul>
+            </div>
+            <div>
+              <p className="font-semibold">Şirket</p>
+              <ul className="mt-2 space-y-2 text-sm text-slate-400">
+                <li><Link href="#" className="hover:text-sky-400">Hakkımızda</Link></li>
+                <li><Link href="#" className="hover:text-sky-400">Blog</Link></li>
+                <li><Link href="#" className="hover:text-sky-400">Kariyer</Link></li>
+              </ul>
+            </div>
+            <div>
+              <p className="font-semibold">Hukuki</p>
+              <ul className="mt-2 space-y-2 text-sm text-slate-400">
+                <li><Link href="#" className="hover:text-sky-400">Gizlilik</Link></li>
+                <li><Link href="#" className="hover:text-sky-400">Şartlar</Link></li>
+                <li><Link href="#" className="hover:text-sky-400">İletişim</Link></li>
+              </ul>
+            </div>
+          </div>
+
+          <div className="mt-12 border-t border-slate-800 pt-8 text-center text-sm text-slate-500">
+            <p>&copy; 2024 Veridora. Tüm hakları saklıdır.</p>
+          </div>
+        </div>
+      </footer>
     </div>
   );
 }

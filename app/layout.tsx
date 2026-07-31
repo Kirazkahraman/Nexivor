@@ -2,7 +2,7 @@ import './globals.css';
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'Nexivor',
+  title: 'Veridora',
   description: 'AI destekli akıllı personel giriş ve güvenlik sistemi',
 };
 

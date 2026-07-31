@@ -37,7 +37,7 @@ export default function HomePage() {
           {sidebarOpen && (
             <div className="flex items-center gap-2">
               <div className="h-8 w-8 rounded-lg bg-gradient-to-br from-sky-400 to-sky-600"></div>
-              <span className="font-semibold">Nexivor</span>
+              <span className="font-semibold">Veridora</span>
             </div>
           )}
           <button onClick={() => setSidebarOpen(!sidebarOpen)} className="rounded-lg p-2 hover:bg-slate-800">

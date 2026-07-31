@@ -43,7 +43,7 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
       <header className="border-b border-slate-800 bg-slate-900/90">
         <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-4">
           <div>
-            <p className="text-sm uppercase tracking-[0.3em] text-sky-400">Nexivor</p>
+            <p className="text-sm uppercase tracking-[0.3em] text-sky-400">Veridora</p>
             <p className="text-sm text-slate-400">Yönetici kontrol paneli</p>
           </div>
           <div className="flex gap-3">

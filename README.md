@@ -1,4 +1,4 @@
-# Nexivor
+# Veridora
 <<<<<<< HEAD
 
 AI destekli akıllı personel giriş ve güvenlik sistemi MVP'si.

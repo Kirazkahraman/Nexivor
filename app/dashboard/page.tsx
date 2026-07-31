@@ -12,7 +12,7 @@ export default function DashboardPage() {
       <div className="mx-auto max-w-6xl">
         <div className="mb-8 flex items-center justify-between">
           <div>
-            <p className="text-sm uppercase tracking-[0.3em] text-sky-400">Nexivor Dashboard</p>
+            <p className="text-sm uppercase tracking-[0.3em] text-sky-400">Veridora Dashboard</p>
             <h1 className="mt-2 text-3xl font-semibold">Akıllı personel ve güvenlik görünümü</h1>
           </div>
           <Link href="/" className="rounded-full border border-slate-700 px-4 py-2 text-sm text-slate-300">

@@ -5,7 +5,7 @@ import { useRouter } from 'next/navigation';
 import { supabase } from '@/lib/supabase';
 
 export default function AuthPanel({ redirectTo = '/dashboard' }: { redirectTo?: string }) {
-  const [email, setEmail] = useState('admin@nexivor.dev');
+  const [email, setEmail] = useState('admin@veridora.dev');
   const [password, setPassword] = useState('admin123456');
   const [mode, setMode] = useState<'signin' | 'signup'>('signin');
   const [message, setMessage] = useState<string | null>(null);
@@ -105,7 +105,7 @@ export default function AuthPanel({ redirectTo = '/dashboard' }: { redirectTo?: 
           value={email}
           onChange={(event) => setEmail(event.target.value)}
           className="w-full rounded-xl border border-slate-700 bg-slate-950 px-4 py-3 text-sm outline-none"
-          placeholder="admin@nexivor.dev"
+          placeholder="admin@veridora.dev"
           type="email"
           required
         />

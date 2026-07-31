@@ -1,4 +1,5 @@
 # Nexivor
+<<<<<<< HEAD
 
 AI destekli akıllı personel giriş ve güvenlik sistemi MVP'si.
 
@@ -41,3 +42,6 @@ AI destekli akıllı personel giriş ve güvenlik sistemi MVP'si.
   git push -u origin main
   ```
 - Vercel'de proje ekleyip Supabase ortam değişkenlerini ekle.
+=======
+Yeni nesil akıllı güvenlik ve erişim teknolojisi
+>>>>>>> ced5ef6317bea5abdcbcce95fe352499d4d7f7a3
